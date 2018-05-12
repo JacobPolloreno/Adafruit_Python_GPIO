@@ -124,5 +124,7 @@ def get_platform_pwm(**keywords):
     elif plat == Platform.BEAGLEBONE_BLACK:
         import Adafruit_BBIO.PWM
         return BBIO_PWM_Adapter(Adafruit_BBIO.PWM, **keywords)
+    elif plat == Platform.TX:
+        return
     elif plat == Platform.UNKNOWN:
         raise RuntimeError('Could not determine platform.')
