@@ -24,13 +24,14 @@ import re
 # Platform identification constants.
 UNKNOWN          = 0
 RASPBERRY_PI     = 1
-BEAGLEBONE_BLACK = 2
+IMX6             = 2
 MINNOWBOARD      = 3
 TX               = 4
+BEAGLEBONE_BLACK = 5
 
 def platform_detect():
     """Detect if running on the Raspberry Pi or Beaglebone Black and return the
-    platform type.  Will return RASPBERRY_PI, BEAGLEBONE_BLACK, or UNKNOWN."""
+    platform type.  Will return RASPBERRY_PI, IMX6, or UNKNOWN."""
     # Handle Raspberry Pi
     pi = pi_version()
     if pi is not None:
@@ -41,11 +42,11 @@ def platform_detect():
     # the platform.
     plat = platform.platform()
     if plat.lower().find('armv7l-with-debian') > -1:
-        return BEAGLEBONE_BLACK
+        return IMX6
     elif plat.lower().find('armv7l-with-ubuntu') > -1:
-        return BEAGLEBONE_BLACK
+        return IMX6
     elif plat.lower().find('armv7l-with-glibc2.4') > -1:
-        return BEAGLEBONE_BLACK
+        return IMX6
     elif plat.lower().find('tegra-aarch64-with-ubuntu') > -1:
         return TX
         
